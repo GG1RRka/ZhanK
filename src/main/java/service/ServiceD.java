@@ -9,8 +9,12 @@ public class ServiceD {
     @Autowired
     private ServiceC serviceC;
 
-    public ServiceD(ServiceC serviceC) {
+    @Autowired
+    public void setServiceC(ServiceC serviceC) {
         this.serviceC = serviceC;
+    }
+    public ServiceD(ServiceC serviceC) {
+        setServiceC(serviceC);
     }
 
     public void methodD() {

@@ -1,11 +1,6 @@
-package com.example.demo;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import service.ServiceA;
-import service.ServiceB;
-import service.ServiceC;
 import service.ServiceD;
 
 @SpringBootApplication

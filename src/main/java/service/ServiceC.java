@@ -1,6 +1,8 @@
 package service;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import repository.RepoC;
+import repository.RepoInterface;
 import service.ServiceB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -10,16 +12,27 @@ import org.springframework.stereotype.Service;
 public class ServiceC {
     @Autowired
     private ServiceB serviceB;
-    private RepoC repoC;
+    @Autowired
+    private RepoInterface repoInterface;
 
-    public ServiceC(ServiceB serviceB, RepoC repoC) {
+    @Autowired
+    public void setServiceB(ServiceB serviceB) {
         this.serviceB = serviceB;
-        this.repoC = repoC;
+    }
+
+    @Autowired
+    public void setRepoInterface(@Qualifier("repoC") RepoInterface repoInterface) {
+        this.repoInterface = repoInterface;
+    }
+
+    public ServiceC(ServiceB serviceB, RepoInterface repoInterface) {
+        setServiceB(serviceB);
+        setRepoInterface(repoInterface);
     }
 
     public void methodC() {
         System.out.println("class (ServiceC) method called");
         serviceB.methodB();
-        repoC.repoMethodC();
+        repoInterface.repoMethod();
     }
 }

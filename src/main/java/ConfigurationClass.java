@@ -3,6 +3,8 @@ package com.example.demo;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.PropertySource;
 import repository.RepoA;
 import repository.RepoB;
 import repository.RepoC;
@@ -12,6 +14,7 @@ import service.ServiceC;
 import service.ServiceD;
 
 @Configuration
+@PropertySource("application.properties")
 public class ConfigurationClass {
     @Bean("serviceAFromConfigurationClass")
     public ServiceA getServiceA(){
@@ -37,6 +40,7 @@ public class ConfigurationClass {
     }
 
     @Bean("repoAFromConfigurationClass")
+    @Primary
     public RepoA getRepoA(){
         return new RepoA();
     }
