@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class MyAspect {
 
-    @Before("execution(* com.example.demo.service.ServiceD*.*(..))")
+    @Before(value = "execution(* com.example.demo.service.ServiceD*.*(..))")
     public void logBefore(JoinPoint jointPoint) {
         log.info("It runs before the method execution. ");
 
