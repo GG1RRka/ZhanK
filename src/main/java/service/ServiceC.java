@@ -1,5 +1,6 @@
 package service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import repository.RepoC;
 import repository.RepoInterface;
@@ -8,7 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.util.zip.DataFormatException;
+
+
 @Component
+@Slf4j
+@Service
 public class ServiceC {
     @Autowired
     private ServiceB serviceB;
@@ -32,7 +38,11 @@ public class ServiceC {
 
     public void methodC() {
         System.out.println("class (ServiceC) method called");
-        serviceB.methodB();
+
         repoInterface.repoMethod();
+    }
+
+    public String throwErrorMethodC() throws DataFormatException {
+        throw new DataFormatException("class (ServiceC) method called");
     }
 }
