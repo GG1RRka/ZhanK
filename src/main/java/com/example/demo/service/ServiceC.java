@@ -1,10 +1,8 @@
-package service;
+package com.example.demo.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
-import repository.RepoC;
-import repository.RepoInterface;
-import service.ServiceB;
+import com.example.demo.repository.RepoInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -16,22 +14,19 @@ import java.util.zip.DataFormatException;
 @Slf4j
 @Service
 public class ServiceC {
-    @Autowired
+    //@Autowired
     private ServiceB serviceB;
-    @Autowired
     private RepoInterface repoInterface;
 
-    @Autowired
+    //@Autowired
     public void setServiceB(ServiceB serviceB) {
         this.serviceB = serviceB;
     }
-
-    @Autowired
-    public void setRepoInterface(@Qualifier("repoC") RepoInterface repoInterface) {
+    public void setRepoInterface(RepoInterface repoInterface) {
         this.repoInterface = repoInterface;
     }
 
-    public ServiceC(ServiceB serviceB, RepoInterface repoInterface) {
+    public ServiceC(ServiceB serviceB, @Qualifier("repoCFromConfigurationClass") RepoInterface repoInterface) {
         setServiceB(serviceB);
         setRepoInterface(repoInterface);
     }

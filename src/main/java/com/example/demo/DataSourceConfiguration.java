@@ -11,8 +11,11 @@ public class DataSourceConfiguration {
     @Bean
     public DataSource getdataSource(){
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
-        dataSourceBuilder.driverClassName("org.hv2,");
-        return null;
+        dataSourceBuilder.driverClassName("com.mysql.cj.jdbc.Driver");
+        dataSourceBuilder.url("jdbc:mysql://localhost:3306/test");
+        dataSourceBuilder.username("root");
+        dataSourceBuilder.password("root");
+        return dataSourceBuilder.build();
     }
 
 }

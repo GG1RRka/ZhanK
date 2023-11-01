@@ -5,37 +5,37 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
-import repository.RepoA;
-import repository.RepoB;
-import repository.RepoC;
-import service.ServiceA;
-import service.ServiceB;
-import service.ServiceC;
-import service.ServiceD;
+import com.example.demo.repository.RepoA;
+import com.example.demo.repository.RepoB;
+import com.example.demo.repository.RepoC;
+import com.example.demo.service.ServiceA;
+import com.example.demo.service.ServiceB;
+import com.example.demo.service.ServiceC;
+import com.example.demo.service.ServiceD;
 
 @Configuration
 @PropertySource("application.properties")
 public class ConfigurationClass {
     @Bean("serviceAFromConfigurationClass")
     public ServiceA getServiceA(){
-        ServiceA serviceA = new ServiceA(new RepoA());
+        ServiceA serviceA = new ServiceA(getRepoA());
         return serviceA;
     }
     @Bean("serviceBFromConfigurationClass")
     public ServiceB getServiceB(){
-        ServiceB serviceB = new ServiceB(getServiceA(), new RepoB());
+        ServiceB serviceB = new ServiceB(getServiceA(), getRepoB());
         return serviceB;
     }
 
     @Bean("serviceCFromConfigurationClass")
     public ServiceC getServiceC(){
-        ServiceC serviceC = new ServiceC(new ServiceB(new ServiceA(new RepoA()), new RepoB()), new RepoC());
+        ServiceC serviceC = new ServiceC(getServiceB(), getRepoC());
         return  serviceC;
     }
 
     @Bean("serviceDFromConfigurationClass")
     public ServiceD getServiceD(){
-        ServiceD serviceD = new ServiceD(new ServiceC(new ServiceB(new ServiceA(new RepoA()), new RepoB()), new RepoC()));
+        ServiceD serviceD = new ServiceD(getServiceC());
         return serviceD;
     }
 
@@ -54,8 +54,5 @@ public class ConfigurationClass {
     public RepoC getRepoC(){
         return new RepoC();
     }
-
-    @Value("${configurationClass.value}")
-    private String configurationValue;
 
 }

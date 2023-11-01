@@ -1,4 +1,4 @@
-package service;
+package com.example.demo.service;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
-import service.ServiceC;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -16,7 +15,7 @@ import java.util.zip.DataFormatException;
 @Slf4j
 @Service
 public class ServiceD {
-    @Autowired
+    //@Autowired
     private ServiceC serviceC;
 
     private String attribute;
@@ -29,11 +28,10 @@ public class ServiceD {
         this.attribute = value;
     }
 
-    @Autowired
+    //@Autowired
     public void setServiceC(ServiceC serviceC) {
         this.serviceC = serviceC;
     }
-    @Autowired
     public ServiceD(ServiceC serviceC) {
         setServiceC(serviceC);
     }

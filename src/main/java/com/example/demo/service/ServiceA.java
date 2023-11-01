@@ -1,27 +1,23 @@
-package service;
+package com.example.demo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import repository.RepoA;
-import repository.RepoB;
-import repository.RepoInterface;
+import com.example.demo.repository.RepoInterface;
 
 @Service
 public class ServiceA {
-    @Autowired
     private RepoInterface repoInterface;
 
 
-    @Autowired
     public void setRepoInterface(RepoInterface repoInterface) {
         this.repoInterface = repoInterface;
     }
-    @Value("${serviceA.attribute}")
+    @Value("My Bean Method")
     private String attribute;
-    @Autowired
-    public ServiceA(@Qualifier("repoA") RepoInterface repoInterface) {
+    //@Autowired
+    public ServiceA(@Qualifier("repoAFromConfigurationClass") RepoInterface repoInterface) {
         setRepoInterface(repoInterface);
     }
 
