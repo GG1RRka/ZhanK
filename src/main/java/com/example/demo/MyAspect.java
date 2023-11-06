@@ -26,6 +26,6 @@ public class MyAspect {
 
     @After("execution(* com.example.demo.service..*(..))")
     public void logAfterFinally(JoinPoint joinPoint){
-        log.info("Method was executed or exception is thrown.\n");
+        log.info("Method was executed or exception is thrown.");
     }
 }
