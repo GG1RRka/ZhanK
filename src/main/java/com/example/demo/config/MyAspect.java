@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Slf4j
 public class MyAspect {
-    @Before("execution(* com.example.demo.service.ServiceD*.*(..))")
+    @Before("execution(* com.example.demo.service..*(..))")
     public void logBefore(JoinPoint joinPoint) {
         log.info("Method hasn't yet been executed.");
     }
@@ -19,13 +19,13 @@ public class MyAspect {
         log.info("Result is returned by method");
     }
 
-    @AfterThrowing("execution(* com.example.demo.service.ServiceC*.*(..))")
+    @AfterThrowing("execution(* com.example.demo.service..*(..))")
     public void logAfterThrow(JoinPoint joinPoint){
         log.info("An exception is thrown by method");
     }
 
     @After("execution(* com.example.demo.service..*(..))")
     public void logAfterFinally(JoinPoint joinPoint){
-        log.info("Method was executed or exception is thrown.");
+        log.info("Method was executed or exception is thrown.\n");
     }
 }
