@@ -1,3 +1,8 @@
+drop table if exists teams;
+drop table if exists players;
+drop table if exists staduims;
+drop table if exists timeslots;
+
 CREATE TABLE teams (
                        id INT PRIMARY KEY,
                        name VARCHAR(255),
