@@ -5,15 +5,20 @@ import com.example.demo.service.StadiumService;
 import com.example.demo.service.TeamService;
 import com.example.demo.service.TimeslotService;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.sql.exec.ExecutionException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
 @Slf4j
+@EnableTransactionManagement
+@EnableJpaRepositories("com.example.demo")
 public class DemoApplication {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException, ExecutionException {
 		ConfigurableApplicationContext ctx = SpringApplication.run(DemoApplication.class, args);
 
 		TeamService teamService = ctx.getBean("teamService", TeamService.class);
