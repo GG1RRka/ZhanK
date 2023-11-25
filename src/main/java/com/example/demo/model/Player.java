@@ -1,23 +1,31 @@
 package com.example.demo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
 
-@Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
-@Table(name = "players")
+@Table(name = "player")
+@NamedQueries({
+        @NamedQuery(name=Player.FIND_ALL, query="SELECT s FROM players s"),
+        @NamedQuery(name=Player.FIND_BY_ID, query="SELECT s FROM players s WHERE s.id = :id"),
+        @NamedQuery(name=Player.FIND_BY_NAME, query="SELECT s FROM players s WHERE s.name = :name")
+})
+@SqlResultSetMapping(
+        name="playerResult",
+        entities=@EntityResult(entityClass=Player.class)
+)
 public class Player {
+    public static final String FIND_ALL = "Player.findAll";
+    public static final String FIND_BY_ID = "Player.findById";
+    public static final String FIND_BY_NAME = "Player.findByAttrName";
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
     private String surname;

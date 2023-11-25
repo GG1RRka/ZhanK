@@ -11,21 +11,21 @@ import javax.sql.DataSource;
 @Configuration
 @Slf4j
 public class DataSourceConfiguration {
-    @Bean
-    public DataSource getdataSource(){
-        DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
-        dataSourceBuilder.driverClassName("org.h2.Driver");
-        dataSourceBuilder.url("jdbc:h2:mem:test");
-        dataSourceBuilder.username("root");
-        dataSourceBuilder.password("root");
-        return dataSourceBuilder.build();
-    }
-
-    @Bean
-    public JdbcTemplate jdbcTemplate() {
-        JdbcTemplate jdbcTemplate = new JdbcTemplate();
-        jdbcTemplate.setDataSource(getdataSource());
-        return jdbcTemplate;
-    }
+//    @Bean
+//    public DataSource getdataSource(){
+//        DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
+//        dataSourceBuilder.driverClassName("org.h2.Driver");
+//        dataSourceBuilder.url("jdbc:h2:mem:test");
+//        dataSourceBuilder.username("root");
+//        dataSourceBuilder.password("root");
+//        return dataSourceBuilder.build();
+//    }
+//
+//    @Bean
+//    public JdbcTemplate jdbcTemplate() {
+//        JdbcTemplate jdbcTemplate = new JdbcTemplate();
+//        jdbcTemplate.setDataSource(getdataSource());
+//        return jdbcTemplate;
+//    }
 
 }

@@ -1,9 +1,6 @@
 package com.example.demo;
 
-import com.example.demo.service.PlayerService;
-import com.example.demo.service.StadiumService;
-import com.example.demo.service.TeamService;
-import com.example.demo.service.TimeslotService;
+import com.example.demo.service.*;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.sql.exec.ExecutionException;
 import org.springframework.boot.SpringApplication;
@@ -22,7 +19,7 @@ public class DemoApplication {
 		ConfigurableApplicationContext ctx = SpringApplication.run(DemoApplication.class, args);
 
 		TeamService teamService = ctx.getBean("teamService", TeamService.class);
-		PlayerService playerService = ctx.getBean("playerService", PlayerService.class);
+		PlayerServiceImpl playerService = ctx.getBean("playerService", PlayerServiceImpl.class);
 		StadiumService stadiumService = ctx.getBean("stadiumService", StadiumService.class);
 		TimeslotService timeslotService = ctx.getBean("timeslotService", TimeslotService.class);
 		log.info("Teams in database: {}", teamService.getTeams());

@@ -9,67 +9,26 @@ import org.springframework.stereotype.Service;
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
 public class TeamService {
-
-    private TeamRepository teamRepository;
-
     @Autowired
-    public TeamService(TeamRepository teamRepository) {
-        this.teamRepository = teamRepository;
-    }
-
+    private TeamRepository teamRepository;
     public List<Team> getTeams() {
-        try {
-            return teamRepository.findAll();
-        } catch (SQLException e) {
-            log.error("Error getting team: {}", e.getMessage(), e);
-            return Collections.emptyList();
-        }
+        return teamRepository.findAllTeamsNative();
     }
 
-    public void addTeam(Team team) {
-        try {
-            teamRepository.insert(team);
-        } catch (Exception e) {
-            log.error("Error adding team: {}", e.getMessage(), e);
-        }
-    }
-
-    public void deleteTeam(Long id) {
-        try {
-            teamRepository.delete(id);
-        } catch (Exception e) {
-            log.error("Error deleting team: {}", e.getMessage(), e);
-        }
-    }
-
-    public Team findTeamById(Long id) {
-        try {
-            return teamRepository.findById(id);
-        } catch (Exception e) {
-            log.error("Error finding team: {}", e.getMessage(), e);
-            return new Team();
-        }
+    public Optional<Team> findTeamById(Long id) {
+        return teamRepository.findById(id);
     }
 
     public List<Team> findTeamsByName(String name) {
-        try {
-            return teamRepository.findByAttrName(name);
-        } catch (Exception e) {
-            log.error("Error finding teams: {}", e.getMessage(), e);
-            return Collections.emptyList();
-        }
+        return teamRepository.findByName(name);
     }
 
     public List<Team> findTeamsByCountry(String country) {
-        try {
-            return teamRepository.findByAttrCountry(country);
-        } catch (Exception e) {
-            log.error("Error finding teams: {}", e.getMessage(), e);
-            return Collections.emptyList();
-        }
+        return teamRepository.findByCountry(country);
     }
 }

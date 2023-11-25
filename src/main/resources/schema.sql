@@ -1,7 +1,10 @@
 drop table if exists teams;
 drop table if exists players;
-drop table if exists staduims;
+drop table if exists stadiums;
 drop table if exists timeslots;
+drop table if exists matches;
+drop table if exists results;
+drop table if exists coaches;
 
 CREATE TABLE teams (
                        id INT PRIMARY KEY,
@@ -27,6 +30,7 @@ CREATE TABLE timeslots (
                       id INT PRIMARY KEY,
                       starttime VARCHAR(255)
 );
+
 CREATE TABLE matches (
     id INT PRIMARY KEY,
     team1_id INT,
@@ -35,12 +39,14 @@ CREATE TABLE matches (
     timeslot_id INT,
     match_date DATE
 );
+
 CREATE TABLE results (
     match_id INT PRIMARY KEY,
     team1_score INT,
     team2_score INT,
     winner_id INT
 );
+
 CREATE TABLE coaches (
     id INT PRIMARY KEY,
     name VARCHAR(255),

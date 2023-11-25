@@ -20,5 +20,4 @@ public class Timeslot {
     @GeneratedValue
     private long id;
     private String starttime;
-
 }
