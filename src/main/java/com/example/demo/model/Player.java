@@ -11,9 +11,9 @@ import org.hibernate.annotations.NamedQuery;
 @Entity
 @Table(name = "player")
 @NamedQueries({
-        @NamedQuery(name=Player.FIND_ALL, query="SELECT s FROM players s"),
-        @NamedQuery(name=Player.FIND_BY_ID, query="SELECT s FROM players s WHERE s.id = :id"),
-        @NamedQuery(name=Player.FIND_BY_NAME, query="SELECT s FROM players s WHERE s.name = :name")
+        @NamedQuery(name=Player.FIND_ALL, query="SELECT s FROM Player s"),
+        @NamedQuery(name=Player.FIND_BY_ID, query="SELECT s FROM Player s WHERE s.id = :id"),
+        @NamedQuery(name=Player.FIND_BY_NAME, query="SELECT s FROM Player s WHERE s.name = :name")
 })
 @SqlResultSetMapping(
         name="playerResult",

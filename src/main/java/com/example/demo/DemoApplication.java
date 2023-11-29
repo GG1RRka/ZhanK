@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.hibernate.sql.exec.ExecutionException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -13,6 +14,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Slf4j
 @EnableTransactionManagement
 @EnableJpaRepositories("com.example.demo")
+@EntityScan("com.example.demo.model")
 public class DemoApplication {
 
 	public static void main(String[] args) throws InterruptedException, ExecutionException {
@@ -22,6 +24,9 @@ public class DemoApplication {
 		PlayerServiceImpl playerService = ctx.getBean("playerService", PlayerServiceImpl.class);
 		StadiumService stadiumService = ctx.getBean("stadiumService", StadiumService.class);
 		TimeslotService timeslotService = ctx.getBean("timeslotService", TimeslotService.class);
+		MatchServiceImpl matchService = ctx.getBean("matchService", MatchServiceImpl.class);
+		CoachService coachService = ctx.getBean("coachService", CoachService.class);
+		ResultServiceImpl resultService = ctx.getBean("resultService", ResultServiceImpl.class);
 		log.info("Teams in database: {}", teamService.getTeams());
 		log.info("findTeamById in database: {}", teamService.findTeamById(2L));
 		log.info("findTeamsByCountry in database: {}", teamService.findTeamsByCountry("Kazakhstan"));
@@ -34,7 +39,14 @@ public class DemoApplication {
 		log.info("Timeslots in database: {}", timeslotService.getTimeslots());
 		log.info("findTimeslotById in database: {}", timeslotService.findTimeslotById(1L));
 		log.info("findTimeslotsByCity in database: {}", timeslotService.findTimeslotsByTime("16:00"));
+		log.info("Matches in database: {}", matchService.getMatches());
+		log.info("findMatchesByTeam in database: {}", matchService.findMatchesByTeam(4L));
+		log.info("findMatchesByDate in database: {}", matchService.findMatchesByDate("2023-01-18"));
+		log.info("Coaches in database: {}", coachService.getCoaches());
+		log.info("findCoachesByTeam in database: {}", coachService.findCoachesByTeam(2L));
+		log.info("findCoachesByDate in database: {}", coachService.findCoachesBySurname("Klopp"));
+		log.info("Results in database: {}", resultService.getResults());
+		log.info("findResultsByTeam in database: {}", resultService.findResultById(5L));
+		log.info("findResultsByDate in database: {}", resultService.findResultsByMaxScore(2L));
 	}
-
-
 }

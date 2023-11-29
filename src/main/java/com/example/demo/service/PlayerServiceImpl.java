@@ -12,10 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service("jpaSingerService")
+@Service("jpaPlayerService")
 @Repository
 @Transactional
-@SuppressWarnings("unchecked")
 public class PlayerServiceImpl implements PlayerService {
     final static String ALL_PLAYER_NATIVE_QUERY =
             "select id, name, surname, country from players";

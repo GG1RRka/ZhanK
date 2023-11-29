@@ -32,25 +32,25 @@ CREATE TABLE timeslots (
 );
 
 CREATE TABLE matches (
-    id INT PRIMARY KEY,
-    team1_id INT,
-    team2_id INT,
-    stadium_id INT,
-    timeslot_id INT,
-    match_date DATE
+                      id INT PRIMARY KEY,
+                      team1_id INT,
+                      team2_id INT,
+                      stadium_id INT,
+                      timeslot_id INT,
+                      match_date DATE
 );
 
 CREATE TABLE results (
-    match_id INT PRIMARY KEY,
-    team1_score INT,
-    team2_score INT,
-    winner_id INT
+                      id INT PRIMARY KEY,
+                      team1_score INT,
+                      team2_score INT,
+                      winner_id INT
 );
 
 CREATE TABLE coaches (
-    id INT PRIMARY KEY,
-    name VARCHAR(255),
-    surname VARCHAR(255),
-    team_id INT,
-    country VARCHAR(255)
+                      id INT PRIMARY KEY,
+                      name VARCHAR(255),
+                      surname VARCHAR(255),
+                      team_id INT,
+                      country VARCHAR(255)
 );
