@@ -1,29 +1,62 @@
 package com.example.demo.repository;
 
 import com.example.demo.model.Coach;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.sql.SQLException;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
-public interface CoachRepository extends JpaRepository<Coach, Long> {
-    @Query("SELECT s FROM Coach s WHERE s.id = :id")
-    Optional<Coach> findById(@Param("id") Long id);
-    @Query("SELECT s FROM Coach s WHERE s.name = :name")
-    List<Coach> findByName(@Param("name") String name);
-    @Query("SELECT s FROM Coach s WHERE s.surname = :surname")
-    List<Coach> findBySurname(@Param("surname") String surname);
-    @Query("SELECT s FROM Coach s WHERE s.team_id = :team_id")
-    List<Coach> findByTeam(@Param("team") Long team_id);
+public class CoachRepository {
+    private JdbcTemplate jdbcTemplate;
 
-    @Query("SELECT s FROM Coach s WHERE s.country = :country")
-    List<Coach> findByCountry(@Param("country") String country);
+    @Autowired
+    public CoachRepository(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
+    private RowMapper<Coach> mapRow() {
+        return (rs, rowNum) -> {
+            Coach coach = new Coach();
+            coach.setId(rs.getLong("id"));
+            coach.setName(rs.getString("name"));
+            coach.setCountry(rs.getString("country"));
+            return coach;
+        };
+    }
 
-    @Query(value = "SELECT * FROM Coach s", nativeQuery = true)
-    List<Coach> findAllCoachesNative();
+    public List<Coach> findAll() {
+        return jdbcTemplate.query("SELECT * FROM coaches", this.mapRow());
+    }
+
+    public void insert(Coach coach) {
+        jdbcTemplate.update("INSERT INTO coaches (name, country) VALUES (?, ?)", coach.getName(), coach.getCountry());
+    }
+
+    public void delete(Long id) {
+        jdbcTemplate.update("DELETE FROM coaches WHERE id = ?", id);
+    }
+
+    public Coach findById(Long id) {
+        return jdbcTemplate.queryForObject("SELECT * FROM coaches WHERE id = ?", this.mapRow(), id);
+    }
+
+    public List<Coach> findByAttrName(String name) {
+        return jdbcTemplate.query("SELECT * FROM coaches WHERE name = ?", this.mapRow(), name);
+    }
+
+    public List<Coach> findByAttrSurname(String surname) {
+        return jdbcTemplate.query("SELECT * FROM coaches WHERE surname = ?", this.mapRow(), surname);
+    }
+
+    public List<Coach> findByAttrTeam(Long team_id) {
+        return jdbcTemplate.query("SELECT * FROM coaches WHERE team_id = ?", this.mapRow(), team_id);
+    }
+
+    public List<Coach> findByAttrCountry(String country) {
+        return jdbcTemplate.query("SELECT * FROM coaches WHERE country = ?", this.mapRow(), country);
+    }
 }

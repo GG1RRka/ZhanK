@@ -11,7 +11,7 @@ import org.hibernate.annotations.NamedQuery;
 import java.sql.Date;
 
 @Entity
-@Table(name = "Result")
+@Table(name = "results")
 @NamedQueries({
         @NamedQuery(name=Result.FIND_ALL, query="SELECT s FROM Result s"),
         @NamedQuery(name=Result.FIND_BY_ID, query="SELECT s FROM Result s WHERE s.id = :id"),

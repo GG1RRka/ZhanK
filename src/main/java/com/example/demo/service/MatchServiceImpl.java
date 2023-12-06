@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.sql.Date;
 
-@Service("jpaMatchService")
+@Service("matchService")
 @Repository
 @Transactional
 public class MatchServiceImpl implements MatchService {

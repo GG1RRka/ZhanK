@@ -17,26 +17,26 @@ public class CoachService {
     @Autowired
     private CoachRepository coachRepository;
     public List<Coach> getCoaches() {
-        return coachRepository.findAllCoachesNative();
+        return coachRepository.findAll();
     }
 
-    public Optional<Coach> findCoachById(Long id) {
+    public Coach findCoachById(Long id) {
         return coachRepository.findById(id);
     }
 
     public List<Coach> findCoachesByName(String name) {
-        return coachRepository.findByName(name);
+        return coachRepository.findByAttrName(name);
     }
 
     public List<Coach> findCoachesBySurname(String surname) {
-        return coachRepository.findBySurname(surname);
+        return coachRepository.findByAttrSurname(surname);
     }
 
     public List<Coach> findCoachesByTeam(Long team_id) {
-        return coachRepository.findByTeam(team_id);
+        return coachRepository.findByAttrTeam(team_id);
     }
 
     public List<Coach> findCoachesByCountry(String country) {
-        return coachRepository.findByCountry(country);
+        return coachRepository.findByAttrCountry(country);
     }
 }

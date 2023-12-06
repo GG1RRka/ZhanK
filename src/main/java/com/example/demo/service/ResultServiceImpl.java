@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service("jpaResultService")
+@Service("resultService")
 @Repository
 @Transactional
 public class ResultServiceImpl implements ResultService {
