@@ -1,8 +1,6 @@
 package com.example.demo.config;
 import com.example.demo.service.PlayerService;
 import jakarta.persistence.EntityManagerFactory;
-import com.example.demo.service.PlayerService;
-import com.example.demo.service.PlayerServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -68,9 +66,5 @@ public class JpaConfig {
         factoryBean.setJpaVendorAdapter(jpaVendorAdapter());
         factoryBean.afterPropertiesSet();
         return factoryBean.getNativeEntityManagerFactory();
-    }
-    @Bean
-    public PlayerService playerService(){
-        return new PlayerServiceImpl();
     }
 }

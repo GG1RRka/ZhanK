@@ -21,7 +21,7 @@ public class DemoApplication {
 		ConfigurableApplicationContext ctx = SpringApplication.run(DemoApplication.class, args);
 
 		TeamService teamService = ctx.getBean("teamService", TeamService.class);
-		PlayerServiceImpl playerService = ctx.getBean("playerService", PlayerServiceImpl.class);
+		PlayerService playerService = ctx.getBean("playerService", PlayerService.class);
 		StadiumService stadiumService = ctx.getBean("stadiumService", StadiumService.class);
 		TimeslotService timeslotService = ctx.getBean("timeslotService", TimeslotService.class);
 		MatchServiceImpl matchService = ctx.getBean("matchService", MatchServiceImpl.class);

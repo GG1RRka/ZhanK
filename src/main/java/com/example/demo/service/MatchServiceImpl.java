@@ -20,7 +20,7 @@ public class MatchServiceImpl implements MatchService {
     final static String ALL_MATCH_NATIVE_QUERY =
             "select id, team1_id, team2_id, stadium_id, timeslot_id, match_date from matches";
 
-    private Log log = LogFactory.getLog(PlayerServiceImpl.class);
+    private Log log = LogFactory.getLog(MatchServiceImpl.class);
 
     @PersistenceContext
     private EntityManager em;

@@ -14,6 +14,8 @@ import java.sql.Date;
 @Table(name = "matches")
 @NamedQueries({
         @NamedQuery(name=Match.FIND_ALL, query="SELECT s FROM Match s"),
+        @NamedQuery(name=Match.INSERT, query="INSERT INTO Match (id, team1_id, team2_id, stadium_id, timeslot_id, match_date) VALUES (?, ?, ?, ?, ?, ?)"),
+        @NamedQuery(name=Match.DELETE, query="DELETE FROM Match WHERE id = ?"),
         @NamedQuery(name=Match.FIND_BY_ID, query="SELECT s FROM Match s WHERE s.id = :id"),
         @NamedQuery(name=Match.FIND_BY_TEAM, query="SELECT s FROM Match s WHERE s.team1_id = :team_id OR s.team2_id = :team_id"),
         @NamedQuery(name=Match.FIND_BY_STADIUM, query="SELECT s FROM Match s WHERE s.stadium_id = :stadium_id"),
@@ -26,6 +28,8 @@ import java.sql.Date;
 )
 public class Match {
     public static final String FIND_ALL = "Match.findAll";
+    public static final String INSERT = "Match.insert";
+    public static final String DELETE = "Match.delete";
     public static final String FIND_BY_ID = "Match.findById";
     public static final String FIND_BY_TEAM = "Match.findByAttrTeam";
     public static final String FIND_BY_STADIUM = "Match.findByAttrStadium";
