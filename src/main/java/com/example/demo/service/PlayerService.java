@@ -20,7 +20,6 @@ import java.util.List;
 @Transactional
 @Slf4j
 public class PlayerService {
-    @Autowired
     private PlayerRepository playerRepository;
     @Autowired
     public PlayerService(PlayerRepository playerRepository) {
@@ -32,7 +31,7 @@ public class PlayerService {
             return playerRepository.findAll();
         } catch (Exception e) {
             log.error("Error getting players: {}", e.getMessage(), e);
-            throw new RuntimeException("Error getting players", e);
+            return Collections.emptyList();
         }
     }
 

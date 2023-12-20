@@ -24,9 +24,9 @@ public class DemoApplication {
 		PlayerService playerService = ctx.getBean("playerService", PlayerService.class);
 		StadiumService stadiumService = ctx.getBean("stadiumService", StadiumService.class);
 		TimeslotService timeslotService = ctx.getBean("timeslotService", TimeslotService.class);
-		MatchServiceImpl matchService = ctx.getBean("matchService", MatchServiceImpl.class);
+		MatchService matchService = ctx.getBean("matchService", MatchService.class);
 		CoachService coachService = ctx.getBean("coachService", CoachService.class);
-		ResultServiceImpl resultService = ctx.getBean("resultService", ResultServiceImpl.class);
+		ResultService resultService = ctx.getBean("resultService", ResultService.class);
 		log.info("Teams in database: {}", teamService.getTeams());
 		log.info("findTeamById in database: {}", teamService.findTeamById(2L));
 		log.info("findTeamsByCountry in database: {}", teamService.findTeamsByCountry("Kazakhstan"));

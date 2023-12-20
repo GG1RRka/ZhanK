@@ -1,7 +1,6 @@
 package com.example.demo.repository;
 
 import com.example.demo.model.Match;
-import com.example.demo.service.MatchService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.apache.commons.logging.Log;
@@ -16,8 +15,8 @@ import java.util.List;
 @Repository
 @Transactional
 public class MatchRepository {
-    final static String ALL_PLAYER_NATIVE_QUERY =
-            "select id, name, surname, country from players";
+    final static String ALL_MATCH_NATIVE_QUERY =
+            "select id, team1_id, team2_id, stadium_id, timeslot_id, match_date from matches";
 
     private Log log = LogFactory.getLog(PlayerRepository.class);
 
@@ -59,7 +58,7 @@ public class MatchRepository {
     }
 
     @Transactional(readOnly = true)
-    public List<Match> findByAttrTime(String time) {
+    public List<Match> findByAttrTime(Long timeslotId) {
         List<Match> matches = em.createNamedQuery(Match.FIND_BY_TIME, Match.class).getResultList();
         return matches;
     }

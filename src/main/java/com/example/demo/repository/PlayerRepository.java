@@ -1,7 +1,6 @@
 package com.example.demo.repository;
 
 import com.example.demo.model.Player;
-import com.example.demo.service.PlayerService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.apache.commons.logging.Log;
