@@ -1,5 +1,4 @@
 package com.example.demo.config;
-import com.example.demo.service.PlayerService;
 import jakarta.persistence.EntityManagerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

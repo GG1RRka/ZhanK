@@ -6,7 +6,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import java.sql.SQLException;
 import java.util.List;
 
 @Repository
@@ -28,7 +27,7 @@ public class TeamRepository {
         };
     }
 
-    public List<Team> findAll() throws SQLException {
+    public List<Team> findAll() {
         return jdbcTemplate.query("SELECT * FROM teams", this.mapRow());
     }
 
@@ -50,5 +49,12 @@ public class TeamRepository {
 
     public List<Team> findByAttrCountry(String country) {
         return jdbcTemplate.query("SELECT * FROM teams WHERE country = ?", this.mapRow(), country);
+    }
+
+    public void addTraining(Team team, Integer x) {
+        team.trainingsCount.add(x);
+    }
+    public List<Integer> getTrainingList(Team team) {
+        return team.trainingsCount;
     }
 }

@@ -1,56 +1,24 @@
 drop table if exists teams;
-drop table if exists players;
-drop table if exists stadiums;
-drop table if exists timeslots;
-drop table if exists matches;
-drop table if exists results;
-drop table if exists coaches;
+drop table if exists salaries;
+drop table if exists ratings;
 
 CREATE TABLE teams (
-                       id INT PRIMARY KEY,
-                       name VARCHAR(255),
-                       country VARCHAR(255)
-);
-
-CREATE TABLE players (
                       id INT PRIMARY KEY,
                       name VARCHAR(255),
-                      surname VARCHAR(255),
-                      country VARCHAR(255)
+                      country VARCHAR(255),
+                      totalEarnings INT,
+                      currency VARCHAR(255)
 );
 
-CREATE TABLE stadiums (
+CREATE TABLE salaries (
                       id INT PRIMARY KEY,
-                      name VARCHAR(255),
-                      city VARCHAR(255),
-                      country VARCHAR(255)
+                      "value" INT,
+                      currency VARCHAR(255),
+                      team_id INT
 );
 
-CREATE TABLE timeslots (
+CREATE TABLE ratings (
                       id INT PRIMARY KEY,
-                      starttime VARCHAR(255)
-);
-
-CREATE TABLE matches (
-                      id INT PRIMARY KEY,
-                      team1_id INT,
-                      team2_id INT,
-                      stadium_id INT,
-                      timeslot_id INT,
-                      match_date DATE
-);
-
-CREATE TABLE results (
-                      id INT PRIMARY KEY,
-                      team1_score INT,
-                      team2_score INT,
-                      winner_id INT
-);
-
-CREATE TABLE coaches (
-                      id INT PRIMARY KEY,
-                      name VARCHAR(255),
-                      surname VARCHAR(255),
-                      team_id INT,
-                      country VARCHAR(255)
+                      "value" INT,
+                      team_id INT
 );

@@ -14,13 +14,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "coaches")
-public class Coach {
+@Table(name = "ratings")
+public class Rating {
     @Id
     @GeneratedValue
-    private long id;
-    private String name;
-    private String surname;
-    private long team_id;
-    private String country;
+    private Long id;
+    private Long value;
+    private Long team_id;
 }

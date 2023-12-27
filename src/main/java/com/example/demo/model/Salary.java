@@ -14,12 +14,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "stadiums")
-public class Stadium {
+@Table(name = "salaries")
+public class Salary {
     @Id
     @GeneratedValue
-    private long id;
-    private String name;
-    private String city;
-    private String country;
+    private Long id;
+    private Long value;
+    private String currency;
+    private Long team_id;
 }
