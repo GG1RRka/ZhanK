@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS teams;
-DROP TABLE IF EXISTS salaries;
-DROP TABLE IF EXISTS ratings;
+drop table if exists teams;
+drop table if exists salaries;
+drop table if exists ratings;
 
 CREATE TABLE teams (
                       id INT PRIMARY KEY,
@@ -12,14 +12,14 @@ CREATE TABLE teams (
 
 CREATE TABLE salaries (
                       id INT PRIMARY KEY,
-                      "value" INT,
+                      theValue INT,
                       currency VARCHAR(255),
                       team_id INT
 );
 
 CREATE TABLE ratings (
                       id INT PRIMARY KEY,
-                      "value" INT,
-                      assignTime INT,
+                      theValue DOUBLE,
+                      assignTime DOUBLE,
                       team_id INT
 );

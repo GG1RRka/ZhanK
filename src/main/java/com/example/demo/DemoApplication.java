@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.Random;
 
 @Slf4j
 @EnableTransactionManagement
@@ -44,11 +45,15 @@ public class DemoApplication {
 		log.info("Salaries in getSalaries: {}", salaryService.getSalaries());
 		log.info("Salaries by findSalariesByCurrency: {}", salaryService.findSalariesByCurrency("KZT"));
 		log.info("Salaries by findSalariesByTeam: {}", salaryService.findSalariesByTeam(5L));
-
-		ratingService.ratingDecayForAll();
-		ratingService.ratingUpdateAfterTraining(2L);
-		ratingService.ratingUpdateAfterEvent(5L);
-		ratingService.ratingUpdateEveryMonth();
+		Random rand = new Random();
+		int iterations = 100;
+		while (iterations > 0) {
+			ratingService.ratingDecayForAll();
+			ratingService.ratingUpdateAfterTraining(rand.nextLong(5L) + 1);
+			ratingService.ratingUpdateAfterEvent(rand.nextLong(5L) + 1);
+			ratingService.ratingUpdateEveryMonth();
+			iterations--;
+		}
 	}
 
 }
