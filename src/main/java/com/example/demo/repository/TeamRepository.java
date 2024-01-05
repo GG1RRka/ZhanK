@@ -1,60 +1,19 @@
 package com.example.demo.repository;
 
+import com.example.demo.model.Salary;
 import com.example.demo.model.Team;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
 @Repository
-public class TeamRepository {
-    private JdbcTemplate jdbcTemplate;
-
-    @Autowired
-    public TeamRepository(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
-
-    private RowMapper<Team> mapRow() {
-        return (rs, rowNum) -> {
-            Team team = new Team();
-            team.setId(rs.getLong("id"));
-            team.setName(rs.getString("name"));
-            team.setCountry(rs.getString("country"));
-            return team;
-        };
-    }
-
-    public List<Team> findAll() {
-        return jdbcTemplate.query("SELECT * FROM teams", this.mapRow());
-    }
-
-    public void insert(Team team) {
-        jdbcTemplate.update("INSERT INTO teams (name, country) VALUES (?, ?)", team.getName(), team.getCountry());
-    }
-
-    public void delete(Long id) {
-        jdbcTemplate.update("DELETE FROM teams WHERE id = ?", id);
-    }
-
-    public Team findById(Long id) {
-        return jdbcTemplate.queryForObject("SELECT * FROM teams WHERE id = ?", this.mapRow(), id);
-    }
-
-    public List<Team> findByAttrName(String name) {
-        return jdbcTemplate.query("SELECT * FROM teams WHERE name = ?", this.mapRow(), name);
-    }
-
-    public List<Team> findByAttrCountry(String country) {
-        return jdbcTemplate.query("SELECT * FROM teams WHERE country = ?", this.mapRow(), country);
-    }
-
-    public void addTraining(Team team, Integer x) {
-        team.trainingsCount.add(x);
-    }
-    public List<Integer> getTrainingList(Team team) {
-        return team.trainingsCount;
-    }
+public interface TeamRepository extends JpaRepository<Team, Long> {
+    List<Team> findAll();
+    void insert(Team team);
+    void delete(Long id);
+    Team findTeamById(Long id);
+    List<Team> findByAttrName(String name);
+    List<Team> findByAttrCountry(String country);
+    List<Team> addTraining(Team team, Integer x);
+    List<Integer> getTrainingList(Team team);
 }

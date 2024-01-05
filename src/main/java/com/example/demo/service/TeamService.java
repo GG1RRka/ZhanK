@@ -18,7 +18,7 @@ public class TeamService {
     }
 
     public Team findTeamById(Long id) {
-        return teamRepository.findById(id);
+        return teamRepository.findTeamById(id);
     }
 
     public List<Team> findTeamsByName(String name) {

@@ -16,16 +16,17 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@SpringBootApplication(exclude = SpringApplicationAdminJmxAutoConfiguration.class)
 @Slf4j
 @EnableTransactionManagement
-@EnableJpaRepositories("com.*")
-@ComponentScan(basePackages = { "com.*" })
-@EntityScan("com.*")
+@EnableJpaRepositories("com.example.demo.repository")
+@ComponentScan(basePackages = {"com.example.demo.model", "com.example.demo.service"})
+@SpringBootApplication
+@EntityScan(basePackages = "com.example.demo.model")
 public class DemoApplication {
 
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) {
 		ConfigurableApplicationContext ctx = SpringApplication.run(DemoApplication.class, args);
+		RatingService ratingService = ctx.getBean("ratingService", RatingService.class);
 		TeamService teamService = ctx.getBean("teamService", TeamService.class);
 		SalaryService salaryService = ctx.getBean("salaryService", SalaryService.class);
 
@@ -44,6 +45,10 @@ public class DemoApplication {
 		log.info("Salaries by findSalariesByCurrency: {}", salaryService.findSalariesByCurrency("KZT"));
 		log.info("Salaries by findSalariesByTeam: {}", salaryService.findSalariesByTeam(5L));
 
+		ratingService.ratingDecayForAll();
+		ratingService.ratingUpdateAfterTraining(2L);
+		ratingService.ratingUpdateAfterEvent(5L);
+		ratingService.ratingUpdateEveryMonth();
 	}
 
 }

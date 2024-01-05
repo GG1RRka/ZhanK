@@ -18,7 +18,7 @@ public class SalaryService {
     }
 
     public Salary findSalaryById(Long id) {
-        return salaryRepository.findById(id);
+        return salaryRepository.findSalaryById(id);
     }
 
     public List<Salary> findSalariesByName(Long value) {
@@ -30,6 +30,6 @@ public class SalaryService {
     }
 
     public List<Salary> findSalariesByTeam(Long team_id) {
-        return salaryRepository.findByAttrTeam_id(team_id);
+        return salaryRepository.findByAttrTeam(team_id);
     }
 }
