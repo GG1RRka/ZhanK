@@ -6,21 +6,23 @@ import jakarta.persistence.*;
 @Table(name = "cars")
 public class Car {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Long id;
-    public String name;
-    public String country;
-    public Long earnings;
-    public String currency;
-    /*@ElementCollection
-    public List<Integer> trainings;*/
-
-    public String print() {
-        String result = "ID: " + id + "\n";
-        result += "Name: " + name + "\n";
-        result += "Country: " + country + "\n";
-        result += "Earnings: " + earnings + "\n";
-        result += "Currency: " + currency + "\n";
-        return result;
-    }
+    public Long seller_id;
+    public Float rating;
+    public String make;
+    public String model;
+    public Long release_year;
+    public Long price;
+    public String fuel_type;
+    public String transmission;
+    public Long mileage;
+    public String vin_code;
+    public Boolean used;
+    public String engine_config;
+    public Boolean working;
+    public String color;
+    public String drive_type;
+    public String rudder_side;
+    public Long owners_number;
 }

@@ -25,24 +25,35 @@ public class CarService {
     public void delete(Long id) {
         carRepository.delete(id);
     }
+    public void update(Long id, Car car) {
+        carRepository.update(id, car);
+    }
 
     public Car findCarById(Long id) {
         return carRepository.findCarById(id);
     }
 
-    public List<Car> findCarsByName(String name) {
-        return carRepository.findByName(name);
-    }
+//    public List<Car> findCarsByMake(String make) {
+//        return carRepository.findByMake(make);
+//    }
+//
+//    public List<Car> findCarsByModel(String model) {
+//        return carRepository.findByModel(model);
+//    }
+//
+//    public List<Car> findCarsByRelease_year(Long release_year) {
+//        return carRepository.findByRelease_year(release_year);
+//    }
+//
+//    public List<Car> findCarsByPrice(Long price) {
+//        return carRepository.findByPrice(price);
+//    }
+//
+//    public List<Car> findCarsBySeller_id(Long seller_id) {
+//        return carRepository.findBySeller_id(seller_id);
+//    }
 
-    public List<Car> findCarsByCountry(String country) {
-        return carRepository.findByCountry(country);
-    }
-
-    public List<Car> findCarsByEarnings(Long earnings) {
-        return carRepository.findByEarnings(earnings);
-    }
-
-    public List<Car> findCarsByCurrency(String currency) {
-        return carRepository.findByCurrency(currency);
+    public List<Car> searchCars(Long seller_id, Float rating, String make, String model, Long release_year_min, Long release_year_max, Long price, String fuel_type, String transmission, Long mileage, String vin_code, Boolean used, String engine_config, Boolean working, String color, String drive_type, String rudder_side, Long owners_number) {
+        return carRepository.findByMultipleParameters(seller_id, rating, make, model, release_year_min, release_year_max, price, fuel_type, transmission, mileage, vin_code, used, engine_config, working, color, drive_type, rudder_side, owners_number);
     }
 }
